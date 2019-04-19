@@ -1,0 +1,30 @@
+
+
+Version:	3.10
+CmdLine:	C:\Users\hans miranda\Desktop\menu\Instalador\ejecutable\menu.exe --l4j-debug
+WOW64:		yes
+Working dir:	C:\Users\hans miranda\Desktop\menu\Instalador\ejecutable\.
+Java min ver:	1.8.0
+Java max ver:	
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+32-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Ignore:		1.8
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_111
+Check launcher:	C:\PROGRA~1\Java\JDK18~2.0_1\jre\bin\javaw.exe (OK)
+Match:		1.8.0_111
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_74
+Ignore:		1.8.0_074
+64-bit search:	SOFTWARE\JavaSoft\JRE...
+Check:		SOFTWARE\JavaSoft\JRE\10
+Check launcher:	C:\Program Files\Java\jre-10\bin\javaw.exe (OK)
+Match:		10
+64-bit search:	SOFTWARE\JavaSoft\JDK...
+Check:		SOFTWARE\JavaSoft\JDK\10
+Ignore:		10
+Runtime used:	10 (64-bit)
+Launcher:	C:\Program Files\Java\jre-10\bin\javaw.exe
+Launcher args:	-jar "C:\Users\hans miranda\Desktop\menu\Instalador\ejecutable\menu.exe"
+Args length:	72/32768 chars
+Exit code:	0
