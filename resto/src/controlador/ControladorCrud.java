@@ -26,6 +26,13 @@ public class ControladorCrud implements ActionListener, KeyListener{
     public ControladorCrud(JFCrud vistaCRUD, PersonaDAO modeloCRUD){
         this.modeloCRUD = modeloCRUD;
         this.vistaCRUD = vistaCRUD;
+        vistaCRUD.txtDni.setEditable(false);
+        
+        vistaCRUD.btnEditar.setVisible(false);
+        vistaCRUD.btnEliminar.setVisible(false);
+        vistaCRUD.btnGEdit.setVisible(false);
+        vistaCRUD.txtBusqueda.setVisible(false);
+        
         this.vistaCRUD.btnRegistrar.addActionListener(this);
         this.vistaCRUD.btnListar.addActionListener(this);
         this.vistaCRUD.btnEditar.addActionListener(this);
@@ -36,7 +43,10 @@ public class ControladorCrud implements ActionListener, KeyListener{
         this.vistaCRUD.txtApellidos.addKeyListener(this);
         this.vistaCRUD.txtNombres.addKeyListener(this);
         this.vistaCRUD.txtDireccion.addKeyListener(this);
-        this.vistaCRUD.btnLimpiar.addKeyListener(this);
+        this.vistaCRUD.btnLimpiar.addActionListener(this);
+        this.vistaCRUD.txtTelefono.addKeyListener(this);
+        // vistaCRUD.jdFechaN.(dfalse);
+        // this.vistaCRUD.txtDireccion.addKeyListener(this);
     }
     
     public void InicializarCrud(){
@@ -44,6 +54,8 @@ public class ControladorCrud implements ActionListener, KeyListener{
     }
     
     public void LLenarTabla(JTable tablaD){
+        
+        
         DefaultTableModel  modeloT = new DefaultTableModel();
         tablaD.setModel(modeloT);
         
@@ -70,8 +82,9 @@ public class ControladorCrud implements ActionListener, KeyListener{
     }
     
     public void LimpiarCampos(){
+       
         vistaCRUD.txtDni.setText("");
-        vistaCRUD.txtDni.setEditable(true);
+        vistaCRUD.txtDni.setEditable(false);
         vistaCRUD.txtApellidos.setText("");
         vistaCRUD.txtNombres.setText("");
         vistaCRUD.jdFechaN.setDate(null);
@@ -105,12 +118,12 @@ public class ControladorCrud implements ActionListener, KeyListener{
         }
         
         if(e.getSource() == vistaCRUD.btnRegistrar){
-            
-            if(vistaCRUD.txtDni.getText().equals("")||vistaCRUD.txtApellidos.equals("")||vistaCRUD.txtNombres.equals("")){
+            //new pedido().setVisible(true);
+            if(vistaCRUD.txtApellidos.equals("")||vistaCRUD.txtNombres.equals("")){
                 JOptionPane.showMessageDialog(null, "Debe llenar los campos dni, apellidos, nombres.");
             }
             else{
-            String id = vistaCRUD.txtDni.getText();
+            //String id = vistaCRUD.txtDni.getText();
             String apellidos = vistaCRUD.txtApellidos.getText();
             String nombres = vistaCRUD.txtNombres.getText();
             SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
@@ -118,7 +131,7 @@ public class ControladorCrud implements ActionListener, KeyListener{
             String direccion = vistaCRUD.txtDireccion.getText();
             int telefono = Integer.parseInt(vistaCRUD.txtTelefono.getText());
             
-            String rptaRegistro = modeloCRUD.insertPersona(id, apellidos, nombres, fecha, direccion, telefono);
+            String rptaRegistro = modeloCRUD.insertPersona( apellidos, nombres, fecha, direccion, telefono);
      
             if(rptaRegistro!=null){
                 JOptionPane.showMessageDialog(null, rptaRegistro);
@@ -225,14 +238,17 @@ public class ControladorCrud implements ActionListener, KeyListener{
 
     @Override
     public void keyTyped(KeyEvent e) {
-        if(e.getSource() == vistaCRUD.txtDni){
+        if(e.getSource() == vistaCRUD.txtDni || e.getSource()== vistaCRUD.txtTelefono){
             char c = e.getKeyChar();
             if(c<'0' || c>'9'){
                 e.consume();
             }
         }
         
-        if(e.getSource() == vistaCRUD.txtApellidos || e.getSource() == vistaCRUD.txtNombres || e.getSource() == vistaCRUD.txtDireccion ){
+        
+        
+        
+        if(e.getSource() == vistaCRUD.txtApellidos || e.getSource() == vistaCRUD.txtNombres  ){
             char c = e.getKeyChar();
             if((c<'a' || c>'z') && (c<'A' || c>'Z') && (c!=(char)KeyEvent.VK_SPACE)){
                 e.consume();

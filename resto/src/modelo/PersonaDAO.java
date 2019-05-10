@@ -11,19 +11,19 @@ public class PersonaDAO {
         conexion = new Conexion();
     }
     
-    public String insertPersona(String id, String apellidos, String nombres, String fecha, String direccion, int telefono){
+    public String insertPersona( String apellidos, String nombres, String fecha, String direccion, int telefono){
         String rptaRegistro=null;
         try {
             Connection accesoDB = conexion.getConexion();
-            String sql = "INSERT INTO mesero (id, apellidos, nombres, fechaNacimiento, direccion, telefono)\n" +
-"VALUES (?,?,?,?,?,?);";
+            String sql = "INSERT INTO mesero ( apellidos, nombres, fechaNacimiento, direccion, telefono)\n" +
+"VALUES (?,?,?,?,?);";
             CallableStatement ps = accesoDB.prepareCall(sql);
-            ps.setString(1, id);
-            ps.setString(2, apellidos);
-            ps.setString(3, nombres);
-            ps.setString(4, fecha);
-            ps.setString(5, direccion);
-            ps.setInt(6, telefono);
+           // ps.setString(1, id);
+            ps.setString(1, apellidos);
+            ps.setString(2, nombres);
+            ps.setString(3, fecha);
+            ps.setString(4, direccion);
+            ps.setInt(5, telefono);
             
             int numFAfectas = ps.executeUpdate();
             
