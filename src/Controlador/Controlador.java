@@ -6,7 +6,7 @@
 package Controlador;
 
 import Modelo.Consulta;
-import Modelo.Pedido;
+import Modelo.ListaProductos;
 import Modelo.Producto;
 import Vista.Vista;
 import java.awt.Image;
@@ -40,35 +40,25 @@ public class Controlador implements ActionListener {
         this.producto = producto;
         this.consulta = consulta;
         this.vista = vista;
-
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnSeleccionar.addActionListener(this);   
-        
-        this.vista.btnPedido.addActionListener(this);
-    }
 
+    }
+    
     public void iniciar() {
         vista.setTitle("Coma Comida");
         vista.setLocationRelativeTo(null);
         /*vista.comboTamanho.addItem("Pequeño");
         vista.comboTamanho.addItem("Mediano");
         vista.comboTamanho.addItem("Grande");*/
+        
         anhadirItem();
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        
-        if (e.getSource() == vista.btnPedido) {
-            VistaPedido vistaC = new VistaPedido();
-            Pedido modeloC = new Pedido();
-            ControladorPedido controlaC = new ControladorPedido(vistaC, modeloC);
-            new VistaPedido().setVisible(true);
-             
-             
-        }
-        
+
         if (e.getSource() == vista.btnGuardar) {       
                      //  Vista().setVisible(false);
 
@@ -77,7 +67,7 @@ public class Controlador implements ActionListener {
                 producto.setNombre(vista.textNombre.getText());
                 producto.setDescripcion(vista.textDescripcion.getText());
                 producto.setPrecio(Double.parseDouble(vista.textPrecio.getText()));
-                producto.setTamanho(vista.comboTamanho.getSelectedItem().toString());
+                //producto.setTamanho(vista.comboTamanho.getSelectedItem().toString());
                 producto.setImage(mFile(ruta));                              
 
                 limpiar();

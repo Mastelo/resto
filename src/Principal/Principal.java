@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package coma;
+package Principal;
 
 import Controlador.Controlador;
 
@@ -11,18 +11,25 @@ import Modelo.Consulta;
 import Modelo.Producto;
 import Vista.Vista;
 
+import Controlador.ControladorPrincipal;
+import Vista.VistaPrincipal;
 
 /**
  *
  * @author orlandolopez
  */
-public class Coma {
+public class Principal {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         
+        VistaPrincipal vistaPrincipal = new VistaPrincipal();
+        ControladorPrincipal cPrincipal = new ControladorPrincipal(vistaPrincipal);
+        vistaPrincipal.setVisible(true);
+        vistaPrincipal.setLocationRelativeTo(null);
+        /*
         Producto producto = new Producto();
         Consulta consulta = new Consulta();
         Vista vista = new Vista();
@@ -31,6 +38,8 @@ public class Coma {
         Controlador ctrl = new Controlador(producto, consulta, vista);
         ctrl.iniciar();
         vista.setVisible(true);
-    }
+        */
+        }
+
     
 }

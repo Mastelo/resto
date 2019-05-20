@@ -23,14 +23,14 @@ public class Consulta extends Conexion{
         PreparedStatement ps = null;
         Connection con = getConexion();
         
-        String sql = "INSERT producto (nombre, descripcion, precio, tamaño, imagen) VALUES(?,?,?,?,?);";
+        String sql = "INSERT comida (nombre, descripcion, precio, imagen) VALUES(?,?,?,?);";
         try {
             ps = con.prepareCall(sql);
             ps.setString(1, pro.getNombre());
             ps.setString(2, pro.getDescripcion());
             ps.setDouble(3, pro.getPrecio());
-            ps.setString(4, pro.getTamanho());
-            ps.setBinaryStream(5, pro.getImage());
+            //ps.setString(4, pro.getTamanho());
+            ps.setBinaryStream(4, pro.getImage());
             ps.execute();
             
             estado = true;

@@ -15,7 +15,7 @@ import java.sql.SQLException;
  */
 public class Conexion {
     
-    private final String base = "imagenes";
+    private final String base = "bdrest";
     private final String user = "root";
     private final String pass = "";
     private final String url  = "jdbc:mysql://localhost:3306/"+ base;
@@ -32,5 +32,4 @@ public class Conexion {
         }
         return con;
     }
-    
 }

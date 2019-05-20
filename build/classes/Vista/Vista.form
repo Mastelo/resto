@@ -34,8 +34,7 @@
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="btnPedido" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Component id="btnGuardar" min="-2" pref="110" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -45,16 +44,14 @@
                       </Group>
                       <EmptySpace pref="42" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="textNombre" min="-2" pref="234" max="-2" attributes="0"/>
-                                  <Component id="textPrecio" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
-                                  <Component id="comboTamanho" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="0" pref="37" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="textNombre" min="-2" pref="234" max="-2" attributes="0"/>
+                              <Component id="textPrecio" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
+                              <Component id="comboTamanho" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="0" pref="37" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -122,10 +119,7 @@
               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="btnPedido" max="32767" attributes="0"/>
-                  <Component id="btnGuardar" pref="39" max="32767" attributes="0"/>
-              </Group>
+              <Component id="btnGuardar" min="-2" pref="39" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -224,13 +218,5 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="btnPedido">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Realizar pedido"/>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-      </AuxValues>
-    </Component>
   </SubComponents>
 </Form>
