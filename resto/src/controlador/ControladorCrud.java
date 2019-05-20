@@ -45,6 +45,8 @@ public class ControladorCrud implements ActionListener, KeyListener{
         this.vistaCRUD.txtDireccion.addKeyListener(this);
         this.vistaCRUD.btnLimpiar.addActionListener(this);
         this.vistaCRUD.txtTelefono.addKeyListener(this);
+        
+        this.vistaCRUD.btnMesas.addActionListener(this);
         // vistaCRUD.jdFechaN.(dfalse);
         // this.vistaCRUD.txtDireccion.addKeyListener(this);
     }
@@ -143,6 +145,12 @@ public class ControladorCrud implements ActionListener, KeyListener{
             }
             }
         }
+        
+         if(e.getSource() == vistaCRUD.btnMesas){
+            Mesas vistaMesa = new Mesas();
+            vistaMesa.setVisible(true);
+            vistaMesa.setLocationRelativeTo(null);
+         }
         
         if(e.getSource() == vistaCRUD.btnListar){
             LLenarTabla(vistaCRUD.jtDatos);
