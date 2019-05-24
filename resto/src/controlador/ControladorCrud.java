@@ -147,9 +147,11 @@ public class ControladorCrud implements ActionListener, KeyListener{
         }
         
          if(e.getSource() == vistaCRUD.btnMesas){
+            vistaCRUD.dispose();
             Mesas vistaMesa = new Mesas();
             vistaMesa.setVisible(true);
             vistaMesa.setLocationRelativeTo(null);
+            vistaMesa.setTitle("Disponibilidad de mesas");
          }
         
         if(e.getSource() == vistaCRUD.btnListar){

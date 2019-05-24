@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package vista;
 
 import java.sql.Connection;
@@ -13,21 +9,17 @@ import java.util.List;
 import javax.swing.JButton;
 import modelo.Conexion;
 
-/**
- *
- * @author hans miranda
- */
+
 public class Mesas extends javax.swing.JFrame {
     private List<JButton> botones;
-    private int indice;
     Conexion conexion;
     /**
      * Creates new form Mesas
      */
     public Mesas() {
+        
         initComponents();
         botones =new ArrayList<>();
-        indice =1;
         conexion = new Conexion();
     }
 
@@ -42,10 +34,12 @@ public class Mesas extends javax.swing.JFrame {
 
         buton = new javax.swing.JButton();
         panel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        buton.setText("Mesas");
+        buton.setText("VER");
         buton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 butonActionPerformed(evt);
@@ -54,23 +48,40 @@ public class Mesas extends javax.swing.JFrame {
 
         panel.setLayout(new java.awt.GridLayout(0, 3));
 
+        jLabel1.setFont(new java.awt.Font("Tw Cen MT", 2, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel1.setText("ROJO OCUPADO");
+
+        jLabel2.setFont(new java.awt.Font("Tw Cen MT", 2, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 204, 0));
+        jLabel2.setText("VERDE DISPONIBLE");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(panel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(buton)
-                        .addGap(0, 327, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 228, Short.MAX_VALUE)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buton)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buton)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -80,43 +91,29 @@ public class Mesas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void butonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonActionPerformed
-        /*JButton boton =new JButton("boton "+indice);
-        panel.add(boton);
-        botones.add(boton);
-        indice++;
-        panel.updateUI();*/
+       
+        panel.removeAll(); 
         try {
             conexion = new Conexion();
             Connection acceDB = conexion.getConexion();
-            
-            PreparedStatement ps = acceDB.prepareStatement("select disponibilidad from mesa");
+            PreparedStatement ps = acceDB.prepareStatement("select disponibilidad, nombre from mesa");
             ResultSet rs = ps.executeQuery();
+            
             while(rs.next()){
-                JButton boton =new JButton("Mesa "+indice);
+                JButton boton = new JButton("Mesa "+rs.getString(2));        
                 if(rs.getInt(1) == 0){
-                boton.setBackground(new java.awt.Color(255,50,50));
+                    boton.setBackground(new java.awt.Color(255,50,50));
                 }else {
                     boton.setBackground(new java.awt.Color(0,255,0));
                 }
                 panel.add(boton);
                 botones.add(boton);
-                indice++;
                 panel.updateUI();
-                /*mesero = new Mesero();
-                mesero.setId(rs.getString(1));
-                mesero.setTelefono(rs.getInt(6));
-                listaPersona.add(mesero);*/
             }
         } catch (Exception e) {
         }
         
-        //return listaPersona;
-    
-        
    
-        
-        
-        
     }//GEN-LAST:event_butonActionPerformed
 
     /**
@@ -156,6 +153,8 @@ public class Mesas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton buton;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     public javax.swing.JPanel panel;
     // End of variables declaration//GEN-END:variables
 }
