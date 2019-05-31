@@ -100,7 +100,7 @@ public class Mesas extends javax.swing.JFrame {
             ResultSet rs = ps.executeQuery();
             
             while(rs.next()){
-                JButton boton = new JButton("Mesa "+rs.getString(2));        
+                JButton boton = new JButton(rs.getString(2));        
                 if(rs.getInt(1) == 0){
                     boton.setBackground(new java.awt.Color(255,50,50));
                 }else {
