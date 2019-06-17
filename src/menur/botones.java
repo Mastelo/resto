@@ -11,6 +11,7 @@ import modelo.Consulta;
 import modelo.Producto;
 import vista.FrmGraficas;
 import vista.Mesas;
+import vista.Pedido;
 import vista.Vista;
 
 /**
@@ -85,8 +86,10 @@ public class botones extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        
+        // Vista pedido
+        Pedido pedido = new Pedido();
+        pedido.setVisible(true);
+        pedido.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
