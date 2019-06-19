@@ -18,6 +18,7 @@ public class Pedido extends javax.swing.JFrame {
     /**
      * Creates new form JFCrud
      */
+    
     public Pedido() {
         initComponents();
         conexion = new Conexion();
@@ -39,7 +40,6 @@ public class Pedido extends javax.swing.JFrame {
                 cboxMesa.addItem(rs2.getString("nromesa"));
             }
             
-            cargarcbx();
 
         } catch (Exception e) {
         }
@@ -68,10 +68,10 @@ public class Pedido extends javax.swing.JFrame {
         txtTotal = new javax.swing.JTextField();
         cboxMesero = new javax.swing.JComboBox<>();
         cboxMesa = new javax.swing.JComboBox<>();
-        cboxProducto = new javax.swing.JComboBox<>();
-        btnPlato = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
+        txtPlato = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
 
@@ -106,13 +106,13 @@ public class Pedido extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "PLATO", "CANTIDAD", "SUBTOTAL"
+                "ID", "PLATO", "CANTIDAD", "IMPORTE"
             }
         ));
         jScrollPane2.setViewportView(jTable1);
@@ -124,6 +124,8 @@ public class Pedido extends javax.swing.JFrame {
                 txtCantidadActionPerformed(evt);
             }
         });
+
+        txtPrecio.setEditable(false);
 
         jLabel6.setText("PRECIO");
 
@@ -141,13 +143,6 @@ public class Pedido extends javax.swing.JFrame {
             }
         });
 
-        btnPlato.setText("Elegir plato");
-        btnPlato.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPlatoActionPerformed(evt);
-            }
-        });
-
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -156,7 +151,7 @@ public class Pedido extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "NOMBRE", "PRECIO", "DESCRIPCION"
             }
         ));
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -165,6 +160,15 @@ public class Pedido extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jTable2);
+
+        txtPlato.setVisible(false);
+        txtPlato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPlatoActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Buscador");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -179,121 +183,103 @@ public class Pedido extends javax.swing.JFrame {
                             .addComponent(cboxMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cboxMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                            .addComponent(txtCantidad)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(btnPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
+                        .addComponent(btnAgregarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(btnNuevoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(btnAgregarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(cboxProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addGap(291, 291, 291))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                            .addComponent(txtCantidad))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1))
+                        .addGap(42, 42, 42))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
                         .addComponent(cboxMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(11, 11, 11)
                         .addComponent(cboxMesero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnNuevoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cboxProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(btnPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(28, 28, 28)
+                        .addComponent(txtPlato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(4, 4, 4)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(38, 38, 38)
                         .addComponent(btnAgregarOrden))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGap(40, 40, 40)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(180, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void cargarcbx(){
-       conexion = new Conexion();
-        
-         try {
-            Connection acceDB = conexion.getConexion();
-            PreparedStatement ps1 = acceDB.prepareStatement("select idcomida,precio from comida");
-            ResultSet rs1 = ps1.executeQuery();
-            cboxProducto.addItem("Selecione producto");
-             while(rs1.next()){
-                 cboxProducto.addItem(rs1.getString("idcomida"));
-                 
-             }
-             rs1.close();
-        }   
-         catch (SQLException ex) {
-            Logger.getLogger(Pedido.class.getName()).log(Level.SEVERE, null, ex);
-        }   
-    }
-    
     
     void actualizarPedido(int pedido){
        
         DefaultTableModel modelo= new DefaultTableModel();
-        modelo.addColumn("Comida");
-        modelo.addColumn("Cantidad");
-        modelo.addColumn("Subtotal");
-        //modelo.addColumn("Hora de inicio");
+        modelo.addColumn("ID ");
+        modelo.addColumn("NOMBRE");
+        modelo.addColumn("CANTIDAD");
+        modelo.addColumn("IMPORTE");
+        
 
         //jTable1.setModel(modelo);
 
-        String []datos = new String [3];
+        String []datos = new String [4];
             try {
                 Connection acceDB = conexion.getConexion();
                 //aumentar nombre del plato
-                 PreparedStatement ps1 = acceDB.prepareStatement( "SELECT idcomida,cantidad, subtotal FROM producto_pedido where idpedido="+pedido);
+                PreparedStatement ps1 = acceDB.prepareStatement( "SELECT c.idcomida, nombre,cantidad, subtotal FROM producto_pedido pp, comida c where pp.idcomida=c.idcomida and idpedido="+pedido);
                 ResultSet rs = ps1.executeQuery();
 
                 while(rs.next()){
                     datos[0]=rs.getString(1);
                     datos[1]=rs.getString(2);
                     datos[2]=rs.getString(3);
+                    datos[3]=rs.getString(4);
                     modelo.addRow(datos);
                 }
                 jTable1.setModel(modelo);
@@ -316,20 +302,17 @@ public class Pedido extends javax.swing.JFrame {
                     txtTotal.setText(tot);
                     //System.out.println(tot);
                     try{
-                    String sql1 = "update pedido set total=? where idpedido=?;";
-                    Connection accesoD = conexion.getConexion();
-                    CallableStatement pss = accesoD.prepareCall(sql1);
-                    pss.setDouble(1,total);
-                    pss.setInt(2, pedido);
-                    pss.executeUpdate();
+                        String sql1 = "update pedido set total=? where idpedido=?;";
+                        Connection accesoD = conexion.getConexion();
+                        CallableStatement pss = accesoD.prepareCall(sql1);
+                        pss.setDouble(1,total);
+                        pss.setInt(2, pedido);
+                        pss.executeUpdate();
                     }
                     catch(Exception eTotal){
                         System.err.println(eTotal);
                     }
                 }            
-                
-                
-                
                 
             } catch (SQLException ex) {
 
@@ -343,7 +326,7 @@ public class Pedido extends javax.swing.JFrame {
         modelo.addColumn("ID");
         modelo.addColumn("NOMBRE");
         modelo.addColumn("PRECIO");
-        modelo.addColumn("Descripcion");
+        modelo.addColumn("DESCRIPCION");
 
         String []datos = new String [4];
             try {
@@ -373,6 +356,42 @@ public class Pedido extends javax.swing.JFrame {
         txtCantidad.setText("");
     }
     
+    public void registrarPedido( int plato, int cantidad, double subtotal){
+        Connection accesoDB = conexion.getConexion();
+        PreparedStatement ps1;
+        String rptaRegistro="";
+        try {
+            ps1 = accesoDB.prepareStatement("select max(idpedido)as id from pedido  ");
+            ResultSet rs1 = ps1.executeQuery();
+            if(rs1.next()){
+                int pedido = rs1.getInt("id");
+                //System.out.println(pedido);
+            
+                //insertar a la tabla producto_pedido
+                String sql2 = "INSERT INTO producto_pedido (idpedido,idcomida, cantidad, subtotal ) VALUES (?,?,?,?)";
+                CallableStatement ps;
+                ps = accesoDB.prepareCall(sql2);
+                ps.setInt(1, pedido);
+                ps.setInt(2, plato);
+                ps.setInt(3, cantidad);
+                ps.setDouble(4, subtotal);
+            
+                //System.out.println(plato +" platon "+cantidad +" can "+ subtotal+" sub ");
+                int numFAfectas = ps.executeUpdate();
+
+                if(numFAfectas>0){
+                    rptaRegistro="Registro plato exitoso.";
+                    actualizarPedido(pedido);
+                    actualizarTotal(pedido);
+                }
+                
+            }
+        } catch (SQLException e2) {
+            System.err.println(e2+"e2 ");
+        }
+        limpiar();
+    }
+    
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnListarActionPerformed
@@ -383,13 +402,15 @@ public class Pedido extends javax.swing.JFrame {
 
     private void btnNuevoPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoPedidoActionPerformed
        //registar nuevo pedido en tabla pedido
-
+      
+       jTable1.setModel(new DefaultTableModel());
+       
        String mesa = (String) cboxMesa.getSelectedItem();
        String  mesero = (String) cboxMesero.getSelectedItem();
        String rptaRegistro ="";
        
-       
-       System.out.println(" "+ mesero);
+      
+       //System.out.println(" "+ mesero);
        try {
             Connection accesoDB = conexion.getConexion();
             String sql = "INSERT INTO pedido ( ci, idmesa,fechapedido) VALUES (?,?,?);";
@@ -399,7 +420,7 @@ public class Pedido extends javax.swing.JFrame {
             ps.setString(1, mesero);
             ps.setString(2, mesa);
             ps.setDate(3, sqlDate);
-            System.out.println(" "+ mesero);
+            //System.out.println(" "+ mesero);
             //actualizar mesa
            int numFAfectas = ps.executeUpdate();
             
@@ -421,6 +442,7 @@ public class Pedido extends javax.swing.JFrame {
         } catch (Exception e) {
             System.err.println(e);
         }
+        txtTotal.setText("");
     }//GEN-LAST:event_btnNuevoPedidoActionPerformed
 
     private void btnAgregarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarOrdenActionPerformed
@@ -428,77 +450,23 @@ public class Pedido extends javax.swing.JFrame {
         /* obtener el ultimo pedido
         recuperar id de plato(precio?), nombre 
         pedir cantidad 
-        insertar idpedido, idplato, cantidad y calcular subtotal
+        manda a insertar idpedido, idplato, cantidad y calcular subtotal
         mostrar en tabla
         */
        
-        //txtIdProducto.setText((String) cboxProducto.getSelectedItem());
-        String plato = (String) cboxProducto.getSelectedItem();
+        //String plato = (String) cboxProducto.getSelectedItem();
+        
+        int plato = (int) Double.parseDouble(txtPlato.getText());
         double precio = Double.parseDouble(txtPrecio.getText());
-        double cantidad = Double.parseDouble(txtCantidad.getText());
+        int cantidad = (int) Double.parseDouble(txtCantidad.getText());
+       // double cantidad = Double.parseDouble(txtCantidad.getText());
         double subtotal = precio * cantidad;
         //System.out.println(precio +" p "+cantidad +" can "+ subtotal+" sub ");
 
+        registrarPedido(plato, cantidad, subtotal);
         
-        Connection accesoDB = conexion.getConexion();
-        PreparedStatement ps1;
-        String rptaRegistro="";
-        try {
-            ps1 = accesoDB.prepareStatement("select max(idpedido)as id from pedido  ");
-            ResultSet rs1 = ps1.executeQuery();
-            if(rs1.next()){
-                int pedido = rs1.getInt("id");
-                System.out.println(pedido);
-            
-                //inseratar a la tabla producto_pedido
-                String sql2 = "INSERT INTO producto_pedido (idpedido,idcomida, cantidad, subtotal ) VALUES (?,?,?,?)";
-                CallableStatement ps;
-                ps = accesoDB.prepareCall(sql2);
-                ps.setInt(1, pedido);
-                ps.setString(2, plato);
-                ps.setDouble(3, cantidad);
-                ps.setDouble(4, subtotal);
-            
-                System.out.println(plato +" platon "+cantidad +" can "+ subtotal+" sub ");
-                int numFAfectas = ps.executeUpdate();
-
-                if(numFAfectas>0){
-                    rptaRegistro="Registro plato exitoso.";
-                    actualizarPedido(pedido);
-                    actualizarTotal(pedido);
-                }
-                
-            }
-        } catch (SQLException e2) {
-            System.err.println(e2+"e2 ");
-        }
-           // ps.setString(1, id);
-        limpiar();
         
     }//GEN-LAST:event_btnAgregarOrdenActionPerformed
-
-    private void btnPlatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlatoActionPerformed
-       // Elegir pedido
-       String plato = (String) cboxProducto.getSelectedItem();
-       //consulta para obtener el precio del plato
-       Connection acceDB = conexion.getConexion();
-       PreparedStatement ps1;
-       try{
-            ps1 = acceDB.prepareStatement("select precio from comida where idcomida="+plato);
-            //txtPrecio.setText ()
-            ResultSet rs1 = ps1.executeQuery();
-            while(rs1.next()){
-                double precio = rs1.getDouble("precio");
-                String pre = String.valueOf(precio);
-                txtPrecio.setText( pre);
-                  //rs1.setString(2,plato);
-                System.out.println(precio);
-            }
-       }
-       catch(Exception e) {
-           System.out.println(e);
-       }
-    }//GEN-LAST:event_btnPlatoActionPerformed
 
     private void txtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadActionPerformed
         // TODO add your handling code here:
@@ -525,18 +493,21 @@ public class Pedido extends javax.swing.JFrame {
         // TODO add your handling code here:
         int clic = jTable2.rowAtPoint(evt.getPoint());
         
-        /*codigo = (int)tabla.getValueAt(clic, 0);
-        String nombre = ""+tabla.getValueAt(clic, 1);*/
-        //Double.parseDouble(txtPrecio.getText())
-       double precio = Double.parseDouble((String) jTable2.getValueAt(clic, 2));
-        //double precio = (double)jTable2.getValueAt(clic, 2);
-        //String marca = ""+tabla.getValueAt(clic, 3);
+         int codigo=   Integer.parseInt((String) jTable2.getValueAt(clic, 0));
+        //int codigo = (int)jTable2.getValueAt(clic, 0);
+        //String nombre = " "+jTable2.getValueAt(clic, 1);
+        double precio = Double.parseDouble((String) jTable2.getValueAt(clic, 2));
         
-        
+        txtPlato.setText(String.valueOf(codigo));
         txtPrecio.setText(String.valueOf(precio));
-        
+        //registrarPedido(codigo,,precio);
         
     }//GEN-LAST:event_jTable2MouseClicked
+
+    private void txtPlatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPlatoActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtPlatoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -583,10 +554,9 @@ public class Pedido extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnAgregarOrden;
     public javax.swing.JButton btnNuevoPedido;
-    private javax.swing.JButton btnPlato;
     private javax.swing.JComboBox<String> cboxMesa;
     public javax.swing.JComboBox<String> cboxMesero;
-    private javax.swing.JComboBox<String> cboxProducto;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -597,6 +567,7 @@ public class Pedido extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     public javax.swing.JTextField txtBusqueda;
     public javax.swing.JTextField txtCantidad;
+    public javax.swing.JTextField txtPlato;
     public javax.swing.JTextField txtPrecio;
     public javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
