@@ -281,7 +281,7 @@ public class Pedido extends javax.swing.JFrame {
         modelo.addColumn("Subtotal");
         //modelo.addColumn("Hora de inicio");
 
-        jTable1.setModel(modelo);
+        //jTable1.setModel(modelo);
 
         String []datos = new String [3];
             try {
@@ -368,6 +368,11 @@ public class Pedido extends javax.swing.JFrame {
             }
     }
     
+    public void limpiar(){
+        txtPrecio.setText("");
+        txtCantidad.setText("");
+    }
+    
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnListarActionPerformed
@@ -420,7 +425,7 @@ public class Pedido extends javax.swing.JFrame {
 
     private void btnAgregarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarOrdenActionPerformed
         // registrar platon al pedido
-        /* obtener el ultimo pedido(ver desabilitar boton de nuevo pedidow0)
+        /* obtener el ultimo pedido
         recuperar id de plato(precio?), nombre 
         pedir cantidad 
         insertar idpedido, idplato, cantidad y calcular subtotal
@@ -468,7 +473,7 @@ public class Pedido extends javax.swing.JFrame {
             System.err.println(e2+"e2 ");
         }
            // ps.setString(1, id);
-            
+        limpiar();
         
     }//GEN-LAST:event_btnAgregarOrdenActionPerformed
 
