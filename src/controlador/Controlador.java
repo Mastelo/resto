@@ -61,7 +61,7 @@ public class Controlador implements ActionListener {
                 producto.setNombre(vista.textNombre.getText());
                 producto.setDescripcion(vista.textDescripcion.getText());
                 producto.setPrecio(Double.parseDouble(vista.textPrecio.getText()));
-                producto.setTamanho(vista.comboTamanho.getSelectedItem().toString());
+               
                 producto.setImage(mFile(ruta));                              
 
                 limpiar();

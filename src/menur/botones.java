@@ -90,20 +90,23 @@ public class botones extends javax.swing.JFrame {
         Pedido pedido = new Pedido();
         pedido.setVisible(true);
         pedido.setLocationRelativeTo(null);
+       
+        
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         Mesas mesa = new Mesas();
         mesa.setVisible(true);
-        
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         FrmGraficas grafica = new FrmGraficas();
         grafica.setVisible(true);
-        
+        this.dispose();
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -116,7 +119,7 @@ public class botones extends javax.swing.JFrame {
         Controlador ctrl = new Controlador(producto, consulta, vista);
         ctrl.iniciar();
         vista.setVisible(true);
-        
+        this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
