@@ -136,3 +136,4 @@ public class Controlador implements ActionListener {
     }
 }
 
+//prueba:del controlador
