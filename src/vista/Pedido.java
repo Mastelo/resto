@@ -1,6 +1,7 @@
 
 package vista;
 
+import java.awt.event.KeyEvent;
 import modelo.Conexion;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -22,11 +23,17 @@ public class Pedido extends javax.swing.JFrame {
     public Pedido() {
         initComponents();
         conexion = new Conexion();
+        LlenarCombo();
         
-         try {
+    }
+    
+    public void LlenarCombo(){
+        cboxMesero.removeAllItems();
+        cboxMesa.removeAllItems();
+        try {
             Connection acceDB = conexion.getConexion(); 
             PreparedStatement ps = acceDB.prepareStatement("select ci from mesero");
-            PreparedStatement ps2 = acceDB.prepareStatement("select nromesa from mesa");
+            PreparedStatement ps2 = acceDB.prepareStatement("select idmesa from mesa where disponibilidad=1");
             
             ResultSet rs = ps.executeQuery();
             ResultSet rs2 = ps2.executeQuery();
@@ -37,14 +44,14 @@ public class Pedido extends javax.swing.JFrame {
                 cboxMesero.addItem(rs.getString("ci"));
             }
             while(rs2.next()){
-                cboxMesa.addItem(rs2.getString("nromesa"));
+                cboxMesa.addItem(rs2.getString("idmesa"));
             }
             
 
-        } catch (Exception e) {
+        } catch (Exception cbox) {
+            System.err.println(cbox);
         }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -122,6 +129,11 @@ public class Pedido extends javax.swing.JFrame {
         txtCantidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCantidadActionPerformed(evt);
+            }
+        });
+        txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCantidadKeyTyped(evt);
             }
         });
 
@@ -283,8 +295,8 @@ public class Pedido extends javax.swing.JFrame {
                     modelo.addRow(datos);
                 }
                 jTable1.setModel(modelo);
-            } catch (SQLException ex) {
-
+            } catch (SQLException actpedi) {
+                System.err.println(actpedi);
             }
     }
     
@@ -428,10 +440,10 @@ public class Pedido extends javax.swing.JFrame {
                 rptaRegistro="Registro exitoso.";
               try{
                 Connection accesoD = conexion.getConexion();
-                String sql1 = "update mesa set disponibilidad=? where nromesa=?;";
+                String sql1 = "update mesa set disponibilidad=? where idmesa=?;";
 
                 CallableStatement pss = accesoD.prepareCall(sql1);
-                pss.setInt(1,1);
+                pss.setInt(1,0);
                 pss.setString(2, mesa);
                 pss.executeUpdate();
                 //System.out.println("exito" );
@@ -443,6 +455,7 @@ public class Pedido extends javax.swing.JFrame {
             System.err.println(e);
         }
         txtTotal.setText("");
+        LlenarCombo();
     }//GEN-LAST:event_btnNuevoPedidoActionPerformed
 
     private void btnAgregarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarOrdenActionPerformed
@@ -508,6 +521,16 @@ public class Pedido extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_txtPlatoActionPerformed
+
+    private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
+        // TODO add your handling code here:
+        if(evt.getSource() == txtCantidad){
+            char c = evt.getKeyChar();
+            if(c<'0' || c>'9'){
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_txtCantidadKeyTyped
 
     /**
      * @param args the command line arguments
