@@ -46,7 +46,8 @@ public class PersonaDAO {
             while(rs.next()){
                 mesero = new Mesero();
                 mesero.setId(rs.getString(1));
-                mesero.setApellidos(rs.getString(2));
+                System.out.println(rs.getString(2));
+                mesero.setApellidos(rs.getString(2));                                   
                 mesero.setNombres(rs.getString(3));
                 mesero.setFechaN(rs.getString(4));
                 mesero.setDireccion(rs.getString(5));

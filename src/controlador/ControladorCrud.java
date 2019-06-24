@@ -27,7 +27,7 @@ public class ControladorCrud implements ActionListener, KeyListener{
         this.modeloCRUD = modeloCRUD;
         this.vistaCRUD = vistaCRUD;
         vistaCRUD.txtDni.setEditable(false);
-        
+ 
         vistaCRUD.btnEditar.setVisible(false);
         vistaCRUD.btnEliminar.setVisible(false);
         vistaCRUD.btnGEdit.setVisible(false);
