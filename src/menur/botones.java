@@ -203,7 +203,8 @@ public class botones extends javax.swing.JFrame {
             
             JasperReport reporte =null;
             String path ="src\\reportes\\reportinsumo.jasper";
-            
+            //modificar para el .jar
+            //String path ="lib\\reportinsumo.jasper";
             LocalDate fechaA =LocalDate.now().minusMonths(1);
            
             Map parametro1 = new HashMap();

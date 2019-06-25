@@ -127,6 +127,11 @@ public class Pedido extends javax.swing.JFrame {
                 txtCantidadActionPerformed(evt);
             }
         });
+        txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCantidadKeyTyped(evt);
+            }
+        });
 
         txtPrecio.setEditable(false);
 
@@ -134,6 +139,7 @@ public class Pedido extends javax.swing.JFrame {
 
         jLabel7.setText("TOTAL");
 
+        txtTotal.setEditable(false);
         txtTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTotalActionPerformed(evt);
@@ -216,7 +222,7 @@ public class Pedido extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
                             .addComponent(jScrollPane1))
                         .addGap(42, 42, 42))
@@ -472,7 +478,10 @@ public class Pedido extends javax.swing.JFrame {
         */
        
         //String plato = (String) cboxProducto.getSelectedItem();
-        
+        if(txtCantidad.getText().trim().equals("")){
+                JOptionPane.showMessageDialog(null, "Debe llenar la cantidad.");
+            
+        }else{
         int plato = (int) Double.parseDouble(txtPlato.getText());
         double precio = Double.parseDouble(txtPrecio.getText());
         int cantidad = (int) Double.parseDouble(txtCantidad.getText());
@@ -481,7 +490,7 @@ public class Pedido extends javax.swing.JFrame {
         //System.out.println(precio +" p "+cantidad +" can "+ subtotal+" sub ");
 
         registrarPedido(plato, cantidad, subtotal);
-        
+        }
         
     }//GEN-LAST:event_btnAgregarOrdenActionPerformed
 
@@ -531,6 +540,16 @@ public class Pedido extends javax.swing.JFrame {
         new botones().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
+        // TODO add your handling code here:
+        if(evt.getSource() == txtCantidad){
+            char c = evt.getKeyChar();
+            if(c<'0' || c>'9'){
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_txtCantidadKeyTyped
 
     /**
      * @param args the command line arguments

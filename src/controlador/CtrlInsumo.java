@@ -68,23 +68,28 @@ public class CtrlInsumo implements ActionListener{
     public void actionPerformed(ActionEvent e){
         
         if(e.getSource()==frmins.btnIngresar){
-            ins.setNombre(frmins.txtnombre.getText());
+            if(frmins.txtnombre.getText().trim().equals("")|| frmins.txtdescripcion.getText().trim().equals("")|| frmins.txtprecio.getText().trim().equals("")||frmins.txtunidad.getText().trim().equals("")){
+                JOptionPane.showMessageDialog(null, "Debe llenar todos los campos.");
+            
+            }else{
+                    
+                    ins.setNombre(frmins.txtnombre.getText());
             ins.setDescripcion(frmins.txtdescripcion.getText());
             ins.setPrecio(Double.parseDouble(frmins.txtprecio.getText()));
             SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
             ins.setUnidad(frmins.txtunidad.getText());
             ins.setFechaC(formatoFecha.format(frmins.fecha.getDate()));
             
-            
-           
-         }
-    
-        if (csins.registrar(ins)) {
+            if (csins.registrar(ins)) {
                     JOptionPane.showMessageDialog(null, "Registro Guardado");
                     LLenarTabla(frmins.jtcompra);
                 } else {
                     JOptionPane.showMessageDialog(null, "Registro erroneo");
                 }
+                }
+         }
+    
+        
     }
        
     
