@@ -7,8 +7,24 @@ package menur;
 
 import controlador.Controlador;
 import crudmvc.Coma;
+import java.sql.Connection;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import modelo.Conexion;
 import modelo.Consulta;
 import modelo.Producto;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import vista.FrmGraficas;
 import vista.Mesas;
 import vista.Pedido;
@@ -41,6 +57,7 @@ public class botones extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -78,6 +95,14 @@ public class botones extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 100, 100));
+
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reporte3.jpg"))); // NOI18N
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, 100, 100));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/image.jpg"))); // NOI18N
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 585, 339));
@@ -122,6 +147,46 @@ public class botones extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        try {
+            // TODO add your handling code here:
+            Conexion con = new Conexion();
+            Connection conn =con.getConexion();
+            
+            JasperReport reporte =null;
+            String path ="src\\reportes\\reportinsumo.jasper";
+            
+            LocalDate fechaA =LocalDate.now().minusMonths(1);
+            System.out.println(fechaA);
+            Map parametro1 = new HashMap();
+            Map parametro2= new HashMap();
+             
+             
+             
+           parametro1.put("fechaActual",fechaA);
+           // parametro2.put("fechaMes","2019-06-14"); 
+            
+            reporte =(JasperReport) JRLoader.loadObjectFromFile(path);
+            
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro1, conn);
+            
+            JasperViewer view =new JasperViewer(jprint,false);
+            
+            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            
+            view.setVisible(true);
+            
+            
+            
+            
+        } catch (JRException ex) {
+            Logger.getLogger(botones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -163,5 +228,6 @@ public class botones extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     // End of variables declaration//GEN-END:variables
 }

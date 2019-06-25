@@ -26,7 +26,7 @@ public class Pedido extends javax.swing.JFrame {
          try {
             Connection acceDB = conexion.getConexion(); 
             PreparedStatement ps = acceDB.prepareStatement("select ci from mesero");
-            PreparedStatement ps2 = acceDB.prepareStatement("select nromesa from mesa");
+            PreparedStatement ps2 = acceDB.prepareStatement("select idmesa from mesa");
             
             ResultSet rs = ps.executeQuery();
             ResultSet rs2 = ps2.executeQuery();
@@ -37,7 +37,7 @@ public class Pedido extends javax.swing.JFrame {
                 cboxMesero.addItem(rs.getString("ci"));
             }
             while(rs2.next()){
-                cboxMesa.addItem(rs2.getString("nromesa"));
+                cboxMesa.addItem(rs2.getString("idmesa"));
             }
             
 
