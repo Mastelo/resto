@@ -6,6 +6,7 @@
 package menur;
 
 import controlador.Controlador;
+import controlador.ControladorMesa;
 import crudmvc.Coma;
 import java.sql.Connection;
 import java.text.SimpleDateFormat;
@@ -18,6 +19,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Conexion;
 import modelo.Consulta;
+import modelo.ConsultaMesa;
+import modelo.Mesa;
 import modelo.Producto;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -29,6 +32,7 @@ import vista.FrmGraficas;
 import vista.Mesas;
 import vista.Pedido;
 import vista.Vista;
+import vista.VistaMesa;
 
 /**
  *
@@ -122,8 +126,13 @@ public class botones extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        Mesas mesa = new Mesas();
-        mesa.setVisible(true);
+        VistaMesa     vMesa  = new VistaMesa();
+        ConsultaMesa conMesa = new ConsultaMesa();
+        Mesa           mesa  = new Mesa();
+        
+        ControladorMesa ctrl = new ControladorMesa(mesa, conMesa, vMesa);
+        ctrl.iniciar();
+        vMesa.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
