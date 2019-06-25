@@ -12,6 +12,15 @@ import vista.JFinsumos;
 public class Insumo {
     private String nombre;
     private String Descripcion;
+    private String Unidad;
+
+    public String getUnidad() {
+        return Unidad;
+    }
+
+    public void setUnidad(String Unidad) {
+        this.Unidad = Unidad;
+    }
     private Double precio;
     private String fechaC;
 

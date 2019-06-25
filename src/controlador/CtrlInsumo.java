@@ -48,8 +48,9 @@ public class CtrlInsumo implements ActionListener{
         modeloT.addColumn("nombre");
         modeloT.addColumn("descripcion");
         modeloT.addColumn("precio");
-        modeloT.addColumn("fecha");
-      Object[] columna = new Object[4];
+        modeloT.addColumn("Unidad");
+        modeloT.addColumn("FechaCompra");
+      Object[] columna = new Object[5];
 
         int numInsumos = csins.listInsumo().size();
 
@@ -57,7 +58,8 @@ public class CtrlInsumo implements ActionListener{
             columna[0] = csins.listInsumo().get(i).getNombre();
             columna[1] = csins.listInsumo().get(i).getDescripcion();
             columna[2] = csins.listInsumo().get(i).getPrecio();
-            columna[3] = csins.listInsumo().get(i).getFechaC();
+            columna[3] = csins.listInsumo().get(i).getUnidad();
+            columna[4] = csins.listInsumo().get(i).getFechaC();
              modeloT.addRow(columna);
         }     
            
@@ -70,6 +72,7 @@ public class CtrlInsumo implements ActionListener{
             ins.setDescripcion(frmins.txtdescripcion.getText());
             ins.setPrecio(Double.parseDouble(frmins.txtprecio.getText()));
             SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+            ins.setUnidad(frmins.txtunidad.getText());
             ins.setFechaC(formatoFecha.format(frmins.fecha.getDate()));
             
             

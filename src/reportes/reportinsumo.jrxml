@@ -11,15 +11,18 @@
      insumo.`nombreIn` AS insumo_nombreIn,
      insumo.`descripcionIn` AS insumo_descripcionIn,
      insumo.`precioIn` AS insumo_precioIn,
-     insumo.`fechaIn` AS insumo_fechaIn
+     insumo.`fechaIn` AS insumo_fechaIn,
+     insumo.`UnidadIn` AS insumo_UnidadIn
 FROM
      `insumo` insumo
-WHERE  insumo.fechaIn >=$P{fechaActual}]]>
+WHERE
+     insumo.fechaIn >= $P{fechaActual}]]>
 	</queryString>
 	<field name="insumo_nombreIn" class="java.lang.String"/>
 	<field name="insumo_descripcionIn" class="java.lang.String"/>
 	<field name="insumo_precioIn" class="java.lang.Double"/>
 	<field name="insumo_fechaIn" class="java.sql.Date"/>
+	<field name="insumo_UnidadIn" class="java.lang.String"/>
 	<background>
 		<band/>
 	</background>
@@ -53,32 +56,39 @@ WHERE  insumo.fechaIn >=$P{fechaActual}]]>
 				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="75b2fb0e-428a-4827-8454-56bf26d0ea2f"/>
 			</line>
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="b81302de-0991-4d10-a6f7-4092b2c0e147"/>
+				<reportElement mode="Opaque" x="0" y="0" width="83" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="b81302de-0991-4d10-a6f7-4092b2c0e147"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nombre]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="138" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="e5a94651-09dd-4c65-9671-4fd5d94371c3"/>
+				<reportElement mode="Opaque" x="83" y="1" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="e5a94651-09dd-4c65-9671-4fd5d94371c3"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Descripción]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="276" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="cff13302-55c9-4d8c-bb92-aec634237ea6"/>
+				<reportElement mode="Opaque" x="425" y="0" width="127" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="b294ea4c-e85b-49d5-a4fb-9db4403f86d5"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de compra]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="194" y="1" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="5a1a8d77-f610-4d9b-a638-96bf1f63e69d"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Precio]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="414" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="b294ea4c-e85b-49d5-a4fb-9db4403f86d5"/>
+				<reportElement mode="Opaque" x="305" y="1" width="120" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="3e5c29dc-0c44-45ae-b432-b254f69d6735"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Fecha de compra]]></text>
+				<text><![CDATA[Unidad]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -88,32 +98,39 @@ WHERE  insumo.fechaIn >=$P{fechaActual}]]>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="f5f9738d-b929-4d01-9df5-d896ebc3f925"/>
 			</line>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="0" y="0" width="138" height="20" uuid="f513034c-e669-492a-a3c3-333e19d4dd20"/>
+				<reportElement x="0" y="0" width="83" height="20" uuid="f513034c-e669-492a-a3c3-333e19d4dd20"/>
 				<textElement>
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{insumo_nombreIn}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="138" y="0" width="138" height="20" uuid="e776f993-054d-44a9-bdc3-71b4c8508e49"/>
+				<reportElement x="83" y="0" width="111" height="20" uuid="e776f993-054d-44a9-bdc3-71b4c8508e49"/>
 				<textElement>
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{insumo_descripcionIn}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="276" y="0" width="138" height="20" uuid="ca62770c-e704-4151-a46e-0c1b087804da"/>
+				<reportElement x="425" y="0" width="127" height="20" uuid="de4df692-9277-48e7-a508-311cd8ee307e"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{insumo_fechaIn}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="216" y="0" width="89" height="20" uuid="693db8a5-44da-4c5b-ad4e-e35bdc2defba"/>
 				<textElement>
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{insumo_precioIn}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="414" y="0" width="138" height="20" uuid="de4df692-9277-48e7-a508-311cd8ee307e"/>
+			<textField>
+				<reportElement x="330" y="0" width="95" height="20" uuid="53235004-90ae-4097-8bdb-fb000d7a3762"/>
 				<textElement>
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{insumo_fechaIn}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{insumo_UnidadIn}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

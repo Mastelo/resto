@@ -6,6 +6,7 @@
 package menur;
 
 import controlador.Controlador;
+import controlador.CtrlInsumo;
 import crudmvc.Coma;
 import java.sql.Connection;
 import java.text.SimpleDateFormat;
@@ -18,6 +19,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Conexion;
 import modelo.Consulta;
+import modelo.ConsultaInsumo;
+import modelo.Insumo;
 import modelo.Producto;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -26,6 +29,7 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import vista.FrmGraficas;
+import vista.JFinsumos;
 import vista.Mesas;
 import vista.Pedido;
 import vista.Vista;
@@ -58,6 +62,7 @@ public class botones extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -103,6 +108,14 @@ public class botones extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, 100, 100));
+
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/insumoimg.jpg"))); // NOI18N
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, 120, 100));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/image.jpg"))); // NOI18N
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 585, 339));
@@ -187,6 +200,18 @@ public class botones extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here: 
+         Insumo ins =new Insumo();
+        ConsultaInsumo csins = new ConsultaInsumo();
+        JFinsumos jfins = new JFinsumos();
+        
+        CtrlInsumo ctrl = new CtrlInsumo(ins, csins, jfins);
+        ctrl.iniciar();
+        jfins.setVisible(true);
+        
+    }//GEN-LAST:event_jButton6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -229,5 +254,6 @@ public class botones extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     // End of variables declaration//GEN-END:variables
 }
