@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import menur.botones;
 
 public class Pedido extends javax.swing.JFrame {
     Conexion conexion;
@@ -26,7 +27,7 @@ public class Pedido extends javax.swing.JFrame {
          try {
             Connection acceDB = conexion.getConexion(); 
             PreparedStatement ps = acceDB.prepareStatement("select ci from mesero");
-            PreparedStatement ps2 = acceDB.prepareStatement("select idmesa from mesa");
+            PreparedStatement ps2 = acceDB.prepareStatement("select idmesa from mesa where idmesa=1");
             
             ResultSet rs = ps.executeQuery();
             ResultSet rs2 = ps2.executeQuery();
@@ -72,11 +73,13 @@ public class Pedido extends javax.swing.JFrame {
         jTable2 = new javax.swing.JTable();
         txtPlato = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registro pedido");
+        setPreferredSize(new java.awt.Dimension(750, 420));
 
         btnNuevoPedido.setText("Nuevo Pedido");
         btnNuevoPedido.addActionListener(new java.awt.event.ActionListener() {
@@ -170,6 +173,14 @@ public class Pedido extends javax.swing.JFrame {
 
         jLabel1.setText("Buscador");
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/volver.jpg"))); // NOI18N
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -214,6 +225,10 @@ public class Pedido extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,7 +265,9 @@ public class Pedido extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
@@ -509,6 +526,12 @@ public class Pedido extends javax.swing.JFrame {
         
     }//GEN-LAST:event_txtPlatoActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // Volver
+        new botones().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -556,6 +579,7 @@ public class Pedido extends javax.swing.JFrame {
     public javax.swing.JButton btnNuevoPedido;
     private javax.swing.JComboBox<String> cboxMesa;
     public javax.swing.JComboBox<String> cboxMesero;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
