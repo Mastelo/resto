@@ -36,6 +36,7 @@ public class CtrlInsumo implements ActionListener, KeyListener{
         this.frmins.txtprecio.addKeyListener(this);
         this.frmins.txtnombre.addKeyListener(this);
         this.frmins.txtunidad.addKeyListener(this);
+        this.frmins.txtcantidad.addKeyListener(this);
     }
     public void iniciar(){
         
@@ -74,7 +75,7 @@ public class CtrlInsumo implements ActionListener, KeyListener{
     public void actionPerformed(ActionEvent e){
         
         if(e.getSource()==frmins.btnIngresar){
-            if(frmins.txtnombre.getText().trim().equals("")|| frmins.txtdescripcion.getText().trim().equals("")|| frmins.txtprecio.getText().trim().equals("")||frmins.txtunidad.getText().trim().equals("")){
+            if(frmins.txtnombre.getText().trim().equals("")|| frmins.txtdescripcion.getText().trim().equals("")|| frmins.txtprecio.getText().trim().equals("")||frmins.txtunidad.getText().trim().equals("") || frmins.txtcantidad.getText().trim().equals("")){
                 JOptionPane.showMessageDialog(null, "Debe llenar todos los campos.");
             
             }else{
@@ -85,7 +86,7 @@ public class CtrlInsumo implements ActionListener, KeyListener{
                     SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
                     ins.setUnidad(frmins.txtunidad.getText());
                     ins.setFechaC(formatoFecha.format(frmins.fecha.getDate()));
-                    ins.setCantidad(Double.parseDouble(frmins.txtprecio.getText()));
+                    ins.setCantidad(Double.parseDouble(frmins.txtcantidad.getText()));
             
             if (csins.registrar(ins)) {
                     JOptionPane.showMessageDialog(null, "Registro Guardado");

@@ -16,13 +16,7 @@ public class Insumo {
     private String Unidad;
     private Double precio;
     private String fechaC; 
-    public String getUnidad() {
-        return Unidad;
-    }
 
-    public void setUnidad(String Unidad) {
-        this.Unidad = Unidad;
-    }
     public String getNombre() {
         return nombre;
     }
@@ -39,10 +33,6 @@ public class Insumo {
         this.Descripcion = Descripcion;
     }
 
-    public Double getPrecio() {
-        return precio;
-    }
-
     public Double getCantidad() {
         return cantidad;
     }
@@ -50,21 +40,29 @@ public class Insumo {
     public void setCantidad(Double cantidad) {
         this.cantidad = cantidad;
     }
-    
+
+    public String getUnidad() {
+        return Unidad;
+    }
+
+    public void setUnidad(String Unidad) {
+        this.Unidad = Unidad;
+    }
+
+    public Double getPrecio() {
+        return precio;
+    }
 
     public void setPrecio(Double precio) {
         this.precio = precio;
     }
 
     public String getFechaC() {
-        
         return fechaC;
     }
 
     public void setFechaC(String fechaC) {
         this.fechaC = fechaC;
     }
-    
-
     
 }

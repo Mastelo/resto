@@ -61,7 +61,7 @@ public class FrmGraficas extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(990, 550));
         setResizable(false);
 
-        btnEjecutar.setText("Ejecutar");
+        btnEjecutar.setText("Listar");
         btnEjecutar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEjecutarActionPerformed(evt);
