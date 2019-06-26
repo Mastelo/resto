@@ -49,21 +49,23 @@ public class CtrlInsumo implements ActionListener, KeyListener{
         DefaultTableModel modeloT= new DefaultTableModel();
         tablaD.setModel(modeloT);
         
-        modeloT.addColumn("nombre");
-        modeloT.addColumn("descripcion");
-        modeloT.addColumn("precio");
+        modeloT.addColumn("Nombre");
+        modeloT.addColumn("Descripcion");
+        modeloT.addColumn("Cantidad");
         modeloT.addColumn("Unidad");
+        modeloT.addColumn("Precio");
         modeloT.addColumn("FechaCompra");
-      Object[] columna = new Object[5];
+      Object[] columna = new Object[6];
 
         int numInsumos = csins.listInsumo().size();
 
         for (int i = 0; i < numInsumos; i++) {
             columna[0] = csins.listInsumo().get(i).getNombre();
             columna[1] = csins.listInsumo().get(i).getDescripcion();
-            columna[2] = csins.listInsumo().get(i).getPrecio();
+            columna[2] = csins.listInsumo().get(i).getCantidad();
             columna[3] = csins.listInsumo().get(i).getUnidad();
-            columna[4] = csins.listInsumo().get(i).getFechaC();
+            columna[4] = csins.listInsumo().get(i).getPrecio();
+            columna[5] = csins.listInsumo().get(i).getFechaC();
              modeloT.addRow(columna);
         }     
            
@@ -83,6 +85,7 @@ public class CtrlInsumo implements ActionListener, KeyListener{
                     SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
                     ins.setUnidad(frmins.txtunidad.getText());
                     ins.setFechaC(formatoFecha.format(frmins.fecha.getDate()));
+                    ins.setCantidad(Double.parseDouble(frmins.txtprecio.getText()));
             
             if (csins.registrar(ins)) {
                     JOptionPane.showMessageDialog(null, "Registro Guardado");
@@ -97,7 +100,7 @@ public class CtrlInsumo implements ActionListener, KeyListener{
     }
     @Override
     public void keyTyped(KeyEvent e) {
-        if(e.getSource() == frmins.txtprecio){
+        if(e.getSource() == frmins.txtprecio || e.getSource() == frmins.txtcantidad){
             char c = e.getKeyChar();
             if(c<'0' || c>'9'){
                 e.consume();

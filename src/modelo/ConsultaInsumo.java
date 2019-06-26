@@ -23,7 +23,7 @@ public class ConsultaInsumo {
         PreparedStatement ps = null;
         SimpleDateFormat Ffecha = new SimpleDateFormat("yyyy-MM-dd");
         
-        String sql = "INSERT insumo  (nombreIn, descripcionIn, precioIn, fechaIn, UnidadIn) VALUES(?,?,?,?,?);";
+        String sql = "INSERT insumo  (nombreIn, descripcionIn, precioIn, fechaIn, UnidadIn, cantidadIn) VALUES(?,?,?,?,?,?);";
         try {
             Connection accesoDB2 = conexion.getConexion();
             ps = accesoDB2.prepareCall(sql);
@@ -32,6 +32,7 @@ public class ConsultaInsumo {
             ps.setDouble(3, ins.getPrecio());
             ps.setString(4,ins.getFechaC());
             ps.setString(5, ins.getUnidad());
+            ps.setDouble(6, ins.getCantidad());
             ps.execute();
             
             estado = true;
@@ -58,7 +59,7 @@ public class ConsultaInsumo {
                 insumo.setPrecio(rs.getDouble(4));
                 insumo.setFechaC(rs.getString(5));
                 insumo.setUnidad(rs.getString(6));
-                System.out.println(rs.getString(6));
+                insumo.setCantidad(rs.getDouble(7));
                 listaInsumo.add(insumo);
             }
         } catch (Exception e) {

@@ -12,8 +12,10 @@ import vista.JFinsumos;
 public class Insumo {
     private String nombre;
     private String Descripcion;
+    private Double cantidad;
     private String Unidad;
-
+    private Double precio;
+    private String fechaC; 
     public String getUnidad() {
         return Unidad;
     }
@@ -21,9 +23,6 @@ public class Insumo {
     public void setUnidad(String Unidad) {
         this.Unidad = Unidad;
     }
-    private Double precio;
-    private String fechaC;
-
     public String getNombre() {
         return nombre;
     }
@@ -43,6 +42,15 @@ public class Insumo {
     public Double getPrecio() {
         return precio;
     }
+
+    public Double getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Double cantidad) {
+        this.cantidad = cantidad;
+    }
+    
 
     public void setPrecio(Double precio) {
         this.precio = precio;
