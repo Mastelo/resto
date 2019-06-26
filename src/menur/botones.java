@@ -6,6 +6,7 @@
 package menur;
 
 import controlador.Controlador;
+import controlador.ControladorMesa;
 import controlador.CtrlInsumo;
 import crudmvc.Coma;
 import java.sql.Connection;
@@ -20,7 +21,9 @@ import java.util.logging.Logger;
 import modelo.Conexion;
 import modelo.Consulta;
 import modelo.ConsultaInsumo;
+import modelo.ConsultaMesa;
 import modelo.Insumo;
+import modelo.Mesa;
 import modelo.Producto;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -33,6 +36,7 @@ import vista.JFinsumos;
 import vista.Mesas;
 import vista.Pedido;
 import vista.Vista;
+import vista.VistaMesa;
 
 /**
  *
@@ -174,8 +178,15 @@ public class botones extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        Mesas mesa = new Mesas();
-        mesa.setVisible(true);
+        //Mesas mesa = new Mesas();
+        //mesa.setVisible(true);
+        Mesa mesa = new Mesa();
+        ConsultaMesa consulta = new ConsultaMesa();
+        VistaMesa vista = new VistaMesa();
+        
+        ControladorMesa ctrl = new ControladorMesa(mesa, consulta, vista);
+        ctrl.iniciar();
+        vista.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
