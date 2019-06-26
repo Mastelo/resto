@@ -25,9 +25,11 @@ public class InsumoMain {
         ConsultaInsumo csins = new ConsultaInsumo();
         JFinsumos jfins = new JFinsumos();
         
+        
         CtrlInsumo ctrl = new CtrlInsumo(ins, csins, jfins);
         ctrl.iniciar();
         jfins.setVisible(true);
+        
     }
     
 }
