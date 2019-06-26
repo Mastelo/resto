@@ -33,7 +33,7 @@ public class Pedido extends javax.swing.JFrame {
         try {
             Connection acceDB = conexion.getConexion(); 
             PreparedStatement ps = acceDB.prepareStatement("select ci from mesero");
-            PreparedStatement ps2 = acceDB.prepareStatement("select idmesa from mesa where disponibilidad=1");
+            PreparedStatement ps2 = acceDB.prepareStatement("select NroMesa from mesa where disponibilidad=0");
             
             ResultSet rs = ps.executeQuery();
             ResultSet rs2 = ps2.executeQuery();
@@ -44,7 +44,7 @@ public class Pedido extends javax.swing.JFrame {
                 cboxMesero.addItem(rs.getString("ci"));
             }
             while(rs2.next()){
-                cboxMesa.addItem(rs2.getString("idmesa"));
+                cboxMesa.addItem(rs2.getString("NroMesa"));
             }
             
 
@@ -85,7 +85,6 @@ public class Pedido extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registro pedido");
-        setPreferredSize(new java.awt.Dimension(750, 420));
 
         btnNuevoPedido.setText("Nuevo Pedido");
         btnNuevoPedido.addActionListener(new java.awt.event.ActionListener() {
@@ -456,10 +455,11 @@ public class Pedido extends javax.swing.JFrame {
                 rptaRegistro="Registro exitoso.";
               try{
                 Connection accesoD = conexion.getConexion();
-                String sql1 = "update mesa set disponibilidad=? where idmesa=?;";
+                String sql1 = "update mesa set disponibilidad=? where NroMesa=?;";
 
                 CallableStatement pss = accesoD.prepareCall(sql1);
-                pss.setInt(1,0);
+                //0 disponible, 1 ocupado
+                pss.setInt(1,1);
                 pss.setString(2, mesa);
                 pss.executeUpdate();
                 //System.out.println("exito" );

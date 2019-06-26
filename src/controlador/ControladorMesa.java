@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import menur.botones;
 
 /**
  *
@@ -39,7 +40,8 @@ public class ControladorMesa implements ActionListener {
         this.vista.btnRegistrar.addActionListener(this);
         this.vista.btnModificar.addActionListener(this);
         this.vista.btnEliminar.addActionListener(this);
-        this.vista.btnBuscar.addActionListener(this);        
+        this.vista.btnBuscar.addActionListener(this);   
+        this.vista.btnvolver.addActionListener(this);
         cargarBotones();
     }
 
@@ -56,6 +58,11 @@ public class ControladorMesa implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        if (e.getSource() == vista.btnvolver) {
+            new botones().setVisible(true);
+            vista.dispose();
+        }
+        
         if (e.getSource() == vista.btnRegistrar) {
             System.out.println("kakakaka");
             if (!camposVacios()) {
@@ -190,4 +197,5 @@ public class ControladorMesa implements ActionListener {
         }
 
     }
+    
 }
