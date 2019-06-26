@@ -46,6 +46,16 @@ public class CtrlInsumo implements ActionListener, KeyListener{
         
          
     }
+    
+    public void limpiarCampos(){
+        frmins.txtnombre.setText("");
+        frmins.txtcantidad.setText("");
+        frmins.txtdescripcion.setText("");
+        frmins.txtunidad.setText("");
+        frmins.txtprecio.setText("");
+        frmins.fecha.setDate(null);
+    }
+    
      public void LLenarTabla(JTable tablaD){
         DefaultTableModel modeloT= new DefaultTableModel();
         tablaD.setModel(modeloT);
@@ -87,6 +97,7 @@ public class CtrlInsumo implements ActionListener, KeyListener{
                     ins.setUnidad(frmins.txtunidad.getText());
                     ins.setFechaC(formatoFecha.format(frmins.fecha.getDate()));
                     ins.setCantidad(Double.parseDouble(frmins.txtcantidad.getText()));
+                    limpiarCampos();
             
             if (csins.registrar(ins)) {
                     JOptionPane.showMessageDialog(null, "Registro Guardado");
