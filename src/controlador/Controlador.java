@@ -44,7 +44,7 @@ public class Controlador implements ActionListener {
     }
 
     public void iniciar() {
-        vista.setTitle("Coma Comida");
+        vista.setTitle("Registro de platos");
         vista.setLocationRelativeTo(null);
         /*vista.comboTamanho.addItem("Pequeño");
         vista.comboTamanho.addItem("Mediano");

@@ -3,6 +3,8 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,7 +22,7 @@ import vista.JFinsumos;
  *
  * @author Ivan
  */
-public class CtrlInsumo implements ActionListener{
+public class CtrlInsumo implements ActionListener, KeyListener{
     
         Insumo ins = new Insumo();
         ConsultaInsumo csins = new ConsultaInsumo();
@@ -31,11 +33,13 @@ public class CtrlInsumo implements ActionListener{
         this.csins=csins;
         this.frmins=frmins;
         this.frmins.btnIngresar.addActionListener(this);
-        
+        this.frmins.txtprecio.addKeyListener(this);
+        this.frmins.txtnombre.addKeyListener(this);
+        this.frmins.txtunidad.addKeyListener(this);
     }
     public void iniciar(){
         
-        frmins.setTitle("Insumos");
+        frmins.setTitle("Registro de insumos");
         frmins.setLocationRelativeTo(null);
         LLenarTabla(frmins.jtcompra);
         
@@ -64,7 +68,7 @@ public class CtrlInsumo implements ActionListener{
         }     
            
    }
-
+     @Override
     public void actionPerformed(ActionEvent e){
         
         if(e.getSource()==frmins.btnIngresar){
@@ -74,22 +78,49 @@ public class CtrlInsumo implements ActionListener{
             }else{
                     
                     ins.setNombre(frmins.txtnombre.getText());
-            ins.setDescripcion(frmins.txtdescripcion.getText());
-            ins.setPrecio(Double.parseDouble(frmins.txtprecio.getText()));
-            SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
-            ins.setUnidad(frmins.txtunidad.getText());
-            ins.setFechaC(formatoFecha.format(frmins.fecha.getDate()));
+                    ins.setDescripcion(frmins.txtdescripcion.getText());
+                    ins.setPrecio(Double.parseDouble(frmins.txtprecio.getText()));
+                    SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+                    ins.setUnidad(frmins.txtunidad.getText());
+                    ins.setFechaC(formatoFecha.format(frmins.fecha.getDate()));
             
             if (csins.registrar(ins)) {
                     JOptionPane.showMessageDialog(null, "Registro Guardado");
                     LLenarTabla(frmins.jtcompra);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Registro erroneo");
-                }
-                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Registro erroneo");
+            }
+            }
          }
     
         
+    }
+    @Override
+    public void keyTyped(KeyEvent e) {
+        if(e.getSource() == frmins.txtprecio){
+            char c = e.getKeyChar();
+            if(c<'0' || c>'9'){
+                e.consume();
+            }
+        }
+         if(e.getSource() == frmins.txtunidad || e.getSource() == frmins.txtnombre ){
+            char c = e.getKeyChar();
+            if((c<'a' || c>'z') && (c<'A' || c>'Z') && (c!=(char)KeyEvent.VK_SPACE)){
+                e.consume();
+            }
+        }
+        
+        
+    }
+
+    @Override
+    public void keyPressed(KeyEvent ke) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyReleased(KeyEvent ke) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
        
     

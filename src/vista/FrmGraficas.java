@@ -21,6 +21,7 @@ public class FrmGraficas extends javax.swing.JFrame {
 
     public FrmGraficas() {
         initComponents();
+        this.setTitle("Graficas de productos mas vendidos");
         this.setLocationRelativeTo(null);
         ButtonGroup grupo1 = new ButtonGroup();
         ButtonGroup grupo2 = new ButtonGroup();
@@ -56,7 +57,7 @@ public class FrmGraficas extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1100, 550));
+        setPreferredSize(new java.awt.Dimension(1050, 550));
 
         btnEjecutar.setText("Ejecutar");
         btnEjecutar.addActionListener(new java.awt.event.ActionListener() {

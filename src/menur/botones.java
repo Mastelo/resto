@@ -45,6 +45,7 @@ public class botones extends javax.swing.JFrame {
      */
     public botones() {
         initComponents();
+        this.setTitle("Opciones de la aplicacion Comacomida");
         this.setLocationRelativeTo(null);
     }
 
@@ -76,6 +77,7 @@ public class botones extends javax.swing.JFrame {
         });
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/masVendidos.jpg"))); // NOI18N
+        jButton3.setPreferredSize(new java.awt.Dimension(200, 180));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -83,6 +85,7 @@ public class botones extends javax.swing.JFrame {
         });
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mesas.jpg"))); // NOI18N
+        jButton2.setPreferredSize(new java.awt.Dimension(200, 180));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -97,6 +100,7 @@ public class botones extends javax.swing.JFrame {
         });
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reporte3.jpg"))); // NOI18N
+        jButton5.setPreferredSize(new java.awt.Dimension(200, 180));
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
